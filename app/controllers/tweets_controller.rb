@@ -21,8 +21,15 @@ class TweetsController < ApplicationController
         end
     end
 
+    def destroy
+        tweet= Tweet.find params[:id]
+        tweet.destroy
+        redirect_to tweets_path, notice: "Tweet eliminado"
+    end
+
     private
     def tweet_params
-        params.require(:tweet).permit(:body)
+        params.require(:tweet).permit(:body, :hashtags)
     end
+        
 end
